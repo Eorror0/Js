@@ -1,0 +1,75 @@
+// ==UserScript==
+// @name         New Userscript
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       Youvar parentNode = document.getElementsByClassName('blotter_page_title');
+// @match        https://store.steampowered.com/app/*
+// @grant        none
+// ==/UserScript==
+
+ /*let styleSheet ="
+.copybtn{
+    padding: 0 15px;
+    font-size: 15px;
+    line-height: 30px;
+}
+;"
+let s = document.createElement('style');
+s.type="text/css";
+s.innerHTML=styleSheet;
+(document.head || document.documentElement).appendchild(s);*/
+
+
+
+
+window.addEventListener('load',function(){
+    /* var copybtn1 = {
+         border-radius: 2px;
+         border: none;padding: 1px;
+         display: inline-block;
+         cursor: pointer;
+         text-decoration: none !important;
+         color: #67c1f5 !important;
+         background: rgba( 103, 193, 245, 0.2 );
+     }
+     insertCss(".copybtn",copybtn1);
+     function insertCss(select,styles){
+            if(document.styleSheets.length===0){
+                var style=document.createElement("style");
+                document.head.appendChild(style);
+            }
+            var styleSheet=document.styleSheets[document.styleSheets.length-1];
+            var str=select+" {";
+            for(var prop in styles){
+                str+=prop.replace(/([A-Z])/g,function(item){
+                    return "-"+item.toLowerCase();
+                })+":"+styles[prop]+";"
+            }
+            str+="}";
+            styleSheet.insertRule(str,styleSheet.cssRules.length);
+        }
+        */
+    let parentNode = document.getElementsByClassName("apphub_HeaderStandardTop");
+    let id = document.getElementsByClassName("apphub_AppName")
+
+    function copy(ele){
+        let temp = document.createElement('textarea');
+        document.body.appendChild(temp);
+        temp.value=ele.innerText;
+        temp.select();
+        document.execCommand('copy');
+        temp.remove();
+    };
+    let btn=document.createElement("button");
+    btn.innerHTML = "copy";
+    btn.className = "btnv6_blue_hoverfade btn_medium";
+    btn.onclick = () => {
+        copy(id[0]);
+    };
+    parentNode[0].appendChild(btn);
+
+    //btn.insertBefore(btn,parentNode[0]);
+
+
+})
